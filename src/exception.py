@@ -1,5 +1,5 @@
 import sys
-
+from logger import logging
 
 def error_message_details(error,error_detail:sys):
     _,_,exc_tb = error_detail.exc_info()
@@ -22,3 +22,9 @@ class CustomException(Exception):
         return error_message_details(self.error,self.error_detail)
     
 
+if __name__=="__main__":
+    try:
+        a=1/0
+    except Exception as e:
+        logging.error(CustomException(e,sys))
+        print("Error occured please check logs")
